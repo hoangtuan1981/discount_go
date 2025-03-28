@@ -1,0 +1,12 @@
+{
+    "git.autofetch": true,
+    "git.confirmSync": false,
+    "[json]": {
+        "editor.defaultFormatter": "vscode.json-language-features"
+    },
+    "workbench.startupEditor": "none",
+    "diffEditor.ignoreTrimWhitespace": false,
+    "terminal.integrated.env.windows": {
+        "DATABASE_URL": "your_database_connection_string"
+    }
+}
