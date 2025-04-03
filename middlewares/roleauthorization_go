@@ -1,0 +1,23 @@
+package middlewares
+
+import (
+	"net/http"
+
+	"github.com/gin-gonic/gin"
+)
+
+func RoleAuthorization(requiredRole string) gin.HandlerFunc {
+	return func(c *gin.Context) {
+		// Simulate getting the user's role (e.g., from a token or database)
+		// Replace this with actual logic to retrieve the user's role
+		userRole := c.GetHeader("authorization") // Assume the role is passed in the "Role" header
+
+		if userRole != requiredRole {
+			c.JSON(http.StatusForbidden, gin.H{"error": "Access denied"})
+			c.Abort()
+			return
+		}
+
+		c.Next()
+	}
+}

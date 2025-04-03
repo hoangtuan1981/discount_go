@@ -1,9 +1,12 @@
 package main
 
 import (
+	"Discount/controllers"
+	"Discount/middlewares"
 	"net/http"
 
-	"Discount/controllers"
+	//"Discount/middleware"
+	// Import the database package
 	//Discount is declar in `go.mod` file
 	"github.com/gin-gonic/gin"
 )
@@ -19,13 +22,15 @@ func main() {
 
 	// Endpoint đăng nhập
 	r.POST("/login", login)
-	r.GET("/users", controllers.GetUsers)
+
+	//r.GET("/users", controllers.GetUsers)
 	// //TODO Endpoint yêu cầu xác thực
 	// authenticated := r.Group("/api")
 	// authenticated.Use(authMiddleware())
 	// {
 	// 	authenticated.GET("/users", getUsers)
 	// }
+	r.GET("/users", middlewares.RoleAuthorization("nhanvien"), controllers.GetUsers)
 
 	r.Run(":50917")
 }
